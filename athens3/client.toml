@@ -1,0 +1,5 @@
+chain-id = "athens_7001-1"
+keyring-backend = "test"
+output = "text"
+node = "tcp://localhost:26657"
+broadcast-mode = "sync"
