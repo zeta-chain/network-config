@@ -1,6 +1,8 @@
 proxy_app = "tcp://127.0.0.1:26658"
-#PUT YOUR MONIKER HERE
-moniker = "{YOUR_MONIKER_GOES_HERE}"
+
+# IMPORTANT! Replace the placeholder below with your actual moniker
+moniker = "{MONIKER}"
+
 fast_sync = true
 db_backend = "pebbledb"
 db_dir = "data"
@@ -37,8 +39,10 @@ pprof_laddr = "localhost:6060"
 
 [p2p]
 laddr = "tcp://0.0.0.0:26656"
-#EDIT THIS LINE WITH YOUR EXTERNAL IP
-external_address = "{YOUR_EXTERNAL_IP_HERE}:26656"
+
+# IMPORTANT! Replace the placeholder below with your actual external IP address
+external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
+
 seeds = "8d93468c6022fb3b263963bdea46b0a131d247cd@34.28.196.79:26656"
 persistent_peers = "e04ee1d6b5cc1aa24f7c1ab55139d1cec9962e39@52.45.59.77:26656"
 upnp = false
@@ -75,10 +79,8 @@ ttl-duration = "0s"
 ttl-num-blocks = 0
 
 [statesync]
-#enable = "true"
 enable = "false"
-#rpc_servers = "34.69.20.168:26657,34.69.20.168:26657"
-rpc_servers = ""
+rpc_servers = "34.82.186.7:26657,34.82.186.7:26657"
 trust_height = ""
 trust_hash = ""
 trust_period = "168h0m0s"
