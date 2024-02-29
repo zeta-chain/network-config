@@ -1,5 +1,4 @@
 proxy_app = "tcp://127.0.0.1:26658"
-#CHANGE THIS TO YOUR MONIKER
 
 # IMPORTANT! Replace the placeholder below with your actual moniker
 moniker = "{MONIKER}"
