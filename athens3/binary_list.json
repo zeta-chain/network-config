@@ -74,10 +74,6 @@
     },
     {
       "download_url": "https://github.com/zeta-chain/node/releases/download/v12.2.1-testnet-hotfix/zetacored-linux-amd64",
-      "binary_location": "/root/.zetacored/cosmovisor/upgrades/v12.2.0/bin/zetacored"
-    },
-    {
-      "download_url": "https://github.com/zeta-chain/node/releases/download/v12.2.1-testnet-hotfix/zetacored-linux-amd64",
       "binary_location": "/root/.zetacored/cosmovisor/upgrades/v12.2.1/bin/zetacored"
     },
     {
