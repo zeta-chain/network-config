@@ -40,7 +40,7 @@ laddr = "tcp://0.0.0.0:26656"
 #GET YORU EXTERNAL IP OF YOUR NODE AND PUT HERE.
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
 seeds = "5aaa51a3b9465a32f7f6c9df1d46d4bfcc16aecb@34.30.34.119:26656"
-persistent_peers = "9647631bfae384194a9cfb54620b2e639de81fd6@104.198.184.137:26656,c6d76a249a6d37804ae175063ff7b876a5116936@35.224.160.108:26656"
+persistent_peers = "ea3ca43db14f35f4fc1dfc883e78e7162103047f@104.198.184.137:26656,9a2e8d08a0f61b318c608350e080c000c97e9cf2@35.224.160.108:26656"
 upnp = false
 addr_book_file = "config/addrbook.json"
 addr_book_strict = true
