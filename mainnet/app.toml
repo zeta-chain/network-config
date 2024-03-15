@@ -39,11 +39,11 @@ retries = 3
 offline = false
 
 [grpc]
-enable = true
+enable = false
 address = "0.0.0.0:9090"
 
 [grpc-web]
-enable = true
+enable = false
 address = "127.0.0.1:9091"
 enable-unsafe-cors = false
 
