@@ -77,7 +77,7 @@
       "binary_location": "cosmovisor/upgrades/v12.2.1/bin/zetacored"
     },
     {
-      "download_url": "https://github.com/zeta-chain/node/releases/download/v14.0.0/zetacored-linux-amd64",
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v14.0.1/zetacored-linux-amd64",
       "binary_location": "cosmovisor/upgrades/v14/bin/zetacored"
     }
   ]
