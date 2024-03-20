@@ -1,4 +1,5 @@
 minimum-gas-prices = "1.0azeta"
+pruning = "default"
 pruning-keep-recent = "100"
 pruning-keep-every = "0"
 pruning-interval = "10"

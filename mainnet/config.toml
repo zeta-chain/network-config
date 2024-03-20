@@ -42,7 +42,6 @@ laddr = "tcp://0.0.0.0:26656"
 
 # IMPORTANT! Replace the placeholder below with your actual external IP address
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
-
 seeds = "8d93468c6022fb3b263963bdea46b0a131d247cd@34.28.196.79:26656"
 persistent_peers = "e04ee1d6b5cc1aa24f7c1ab55139d1cec9962e39@52.45.59.77:26656"
 upnp = false
