@@ -40,11 +40,11 @@ offline = false
 
 [grpc]
 enable = true
-address = "127.0.0.1:9090"
+address = "0.0.0.0:9090"
 
 [grpc-web]
 enable = true
-address = "127.0.0.1:9091"
+address = "0.0.0.0:9091"
 enable-unsafe-cors = false
 
 [state-sync]
