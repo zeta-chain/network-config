@@ -42,7 +42,7 @@ laddr = "tcp://0.0.0.0:26656"
 
 # IMPORTANT! Replace the placeholder below with your actual external IP address
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
-seeds = "92a9408a0ca8ec18fde546913b54e4b1470a151f@34.28.196.79:26656"
+seeds = "912d07ae1c869e7a573c09cb7397304874388b5b@104.154.216.162:26656"
 persistent_peers = ""
 upnp = false
 addr_book_file = "config/addrbook.json"
