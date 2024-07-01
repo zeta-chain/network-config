@@ -43,8 +43,8 @@ laddr = "tcp://0.0.0.0:26656"
 # IMPORTANT! Replace the placeholder below with your actual external IP address
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
 
-seeds = "5aaa51a3b9465a32f7f6c9df1d46d4bfcc16aecb@34.30.34.119:26656"
-persistent_peers = "ea3ca43db14f35f4fc1dfc883e78e7162103047f@104.198.184.137:26656,9a2e8d08a0f61b318c608350e080c000c97e9cf2@35.224.160.108:26656"
+seeds = "5aaa51a3b9465a32f7f6c9df1d46d4bfcc16aecb@34.30.34.119:26656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22556"
+persistent_peers = ""
 upnp = false
 addr_book_file = "config/addrbook.json"
 addr_book_strict = true
@@ -80,7 +80,7 @@ ttl-num-blocks = 0
 
 [statesync]
 enable = false
-rpc_servers = "35.224.160.108:26657,35.224.160.108:26657"
+rpc_servers = ""
 trust_height = 0
 trust_hash = ""
 trust_period = "168h0m0s"
