@@ -10,6 +10,7 @@ inter-block-cache = true
 index-events = []
 iavl-cache-size = 781250
 iavl-disable-fastnode = true
+app-db-backend = "pebbledb"
 
 [telemetry]
 service-name = "tss"
