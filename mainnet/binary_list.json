@@ -43,6 +43,10 @@
     {
       "download_url": "https://github.com/zeta-chain/node/releases/download/v19.1.7/zetacored-linux-amd64",
       "binary_location": "cosmovisor/upgrades/v19/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v20.0.2/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v19/bin/zetacored"
     }
   ]
 }
