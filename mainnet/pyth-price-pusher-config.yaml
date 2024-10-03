@@ -1,10 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  annotations:
-    reloader.stakater.com/match: "true"
-  name: pyth-price-pusher
-  namespace: pyth-price-pusher
+  name: pyth-price-pusher-config
 data:
   price-config.stable.yaml: |
     - alias: BTC/USD
