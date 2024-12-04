@@ -60,13 +60,15 @@
             "Endpoint": "BASE_MAINNET_RPC_ENDPOINT"
         }
     },
-    "BitcoinConfig": {
-        "ballot_threshold": "0",
-        "min_observer_delegation": "0",
-        "RPCUsername": "BTC_USER",
-        "RPCPassword": "BTC_PASS",
-        "RPCHost": "BTC_MAINNET_RPC_HOST",
-        "RPCParams": "mainnet"
+    "BTCChainConfigs": {
+        "8332": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "RPCUsername": "BTC_USER",
+            "RPCPassword": "BTC_PASS",
+            "RPCHost": "BTC_MAINNET_RPC_HOST",
+            "RPCParams": "mainnet"
+        }
     },
     "ComplianceConfig": {
         "LogPath": "/var/log/zetaclient"
