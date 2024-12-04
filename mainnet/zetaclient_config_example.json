@@ -1,0 +1,74 @@
+{
+    "Peer": "PEER_ADDRESS",
+    "PublicIP": "YOUR_PUBLIC_IP",
+    "LogFormat": "json",
+    "LogLevel": "info",
+    "LogSampler": false,
+    "PreParamsPath": "",
+    "ZetaCoreHome": "",
+    "ChainID": "zetachain_7000-1",
+    "ZetaCoreURL": "127.0.0.1",
+    "AuthzGranter": "YOUR_OPERATOR_ADDRESS",
+    "AuthzHotkey": "hotkey",
+    "P2PDiagnostic": false,
+    "ConfigUpdateTicker": 5,
+    "P2PDiagnosticTicker": 30,
+    "TssPath": "~/.tss",
+    "TestTssKeysign": false,
+    "CurrentTssPubkey": "",
+    "KeyringBackend": "test",
+    "RelayerKeyPath": "path/to/relayer-keys",
+    "HsmMode": false,
+    "HsmHotKey": "hsm-hotkey",
+    "Keygen": {},
+    "ChainsEnabled": [],
+    "EVMChainConfigs": {
+        "1": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "Chain": {
+                "chain_name": 1,
+                "chain_id": 1,
+                "name": "eth_mainnet"
+            },
+            "Endpoint": "ETHEREUM_MAINNET_RPC_ENDPOINT"
+        },
+        "56": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "Chain": {
+                "chain_name": 5,
+                "chain_id": 56,
+                "name": "bsc_mainnet"
+            },
+            "Endpoint": "BASE_MAINNET_RPC_ENDPOINT"
+        },
+        "137": {
+            "Chain": {
+                "chain_name": 4,
+                "chain_id": 137,
+                "name": "polygon_mainnet"
+            },
+            "Endpoint": "POLYGON_MAINNET_RPC_ENDPOINT"
+        },
+        "8453": {
+            "Chain": {
+                "chain_name": 19,
+                "chain_id": 8453,
+                "name": "base_mainnet"
+            },
+            "Endpoint": "BASE_MAINNET_RPC_ENDPOINT"
+        }
+    },
+    "BitcoinConfig": {
+        "ballot_threshold": "0",
+        "min_observer_delegation": "0",
+        "RPCUsername": "BTC_USER",
+        "RPCPassword": "BTC_PASS",
+        "RPCHost": "BTC_MAINNET_RPC_HOST",
+        "RPCParams": "mainnet"
+    },
+    "ComplianceConfig": {
+        "LogPath": "/var/log/zetaclient"
+    }
+}
