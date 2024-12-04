@@ -1,0 +1,114 @@
+{
+    "Peer": "PEER_ADDRESS",
+    "PublicIP": "YOUR_PUBLIC_IP",
+    "LogFormat": "json",
+    "LogLevel": "info",
+    "LogSampler": false,
+    "PreParamsPath": "",
+    "ZetaCoreHome": "",
+    "ChainID": "athens_7001-1",
+    "ZetaCoreURL": "127.0.0.1",
+    "AuthzGranter": "YOUR_OPERATOR_ADDRESS",
+    "AuthzHotkey": "hotkey",
+    "P2PDiagnostic": false,
+    "ConfigUpdateTicker": 5,
+    "P2PDiagnosticTicker": 30,
+    "TssPath": "~/.tss",
+    "TestTssKeysign": false,
+    "CurrentTssPubkey": "",
+    "KeyringBackend": "test",
+    "RelayerKeyPath": "path/to/relayer-keys",
+    "HsmMode": false,
+    "HsmHotKey": "hsm-hotkey",
+    "Keygen": {},
+    "ChainsEnabled": [],
+    "EVMChainConfigs": {
+        "11155111": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "Client": null,
+            "Chain": {
+                "chain_name": 13,
+                "chain_id": 11155111,
+                "name": "sepolia_testnet"
+            },
+            "Endpoint": "ETHEREUM_SEPOLIA_TESTNET_RPC_ENDPOINT"
+        },
+        "7001": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "Client": null,
+            "Chain": {
+                "chain_name": 11,
+                "chain_id": 7001,
+                "name": "zeta_testnet"
+            },
+            "Endpoint": ""
+        },
+        "80002": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "Client": null,
+            "Chain": {
+                "chain_name": 16,
+                "chain_id": 80002,
+                "name": "amoy_testnet"
+
+            },
+            "Endpoint": "POLYGON_AMOY_TESTNET_RPC_ENDPOINT"
+        },
+        "97": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "Client": null,
+            "Chain": {
+                "chain_name": 10,
+                "chain_id": 97,
+                "name": "bsc_testnet"
+
+            },
+            "Endpoint": "BSC_TESTNET_RPC_ENDPOINT"
+        },
+        "84532": {
+            "Chain": {
+                "chain_name": 20,
+                "chain_id": 84532,
+                "name": "base_sepolia"
+
+            },
+            "Endpoint": "BASE_SEPOLIA_TESTNET_RPC_ENDPOINT"
+        }
+    },
+    "BTCChainConfigs": {
+        "18332": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "RPCUsername": "BTC_USER",
+            "RPCPassword": "BTC_PASS",
+            "RPCHost": "BTC_TESTNET3_RPC_ENDPOINT",
+            "RPCParams": "testnet3"
+        },
+        "18333": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "RPCUsername": "BTC_USER",
+            "RPCPassword": "BTC_PASS",
+            "RPCHost": "BTC_SIGNET_RPC_ENDPOINT",
+            "RPCParams": "testnet3"
+        },
+        "18334": {
+            "ballot_threshold": "0",
+            "min_observer_delegation": "0",
+            "RPCUsername": "BTC_USER",
+            "RPCPassword": "BTC_PASS",
+            "RPCHost": "BTC_TESTNET4_RPC_ENDPOINT",
+            "RPCParams": "testnet3"
+        }
+    },
+    "SolanaConfig": {
+        "Endpoint": "SOLANA_DEVNET_RPC_ENDPOINT"
+    },
+    "ComplianceConfig": {
+        "LogPath": "/var/log/zetaclient"
+    }
+}
