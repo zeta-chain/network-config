@@ -65,8 +65,8 @@ index-events = []
 iavl-cache-size = 781250
 
 # IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
-# Default is true.
-iavl-disable-fastnode = true
+# Default is false.
+iavl-disable-fastnode = false
 
 # AppDBBackend defines the database backend type to use for the application and snapshots DBs.
 # An empty string indicates that a fallback will be used.
