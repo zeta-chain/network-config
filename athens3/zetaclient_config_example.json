@@ -80,14 +80,6 @@
         }
     },
     "BTCChainConfigs": {
-        "18332": {
-            "ballot_threshold": "0",
-            "min_observer_delegation": "0",
-            "RPCUsername": "BTC_USER",
-            "RPCPassword": "BTC_PASS",
-            "RPCHost": "BTC_TESTNET3_RPC_ENDPOINT",
-            "RPCParams": "testnet3"
-        },
         "18333": {
             "ballot_threshold": "0",
             "min_observer_delegation": "0",
