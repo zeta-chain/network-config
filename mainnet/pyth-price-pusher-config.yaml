@@ -1,44 +1,81 @@
 ---
-- alias: BTC/USD
-  id: "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
-  time_difference: 30
-  price_deviation: 5
+- alias: ARB/USD
+  id: "0x3fa4252848f9f0a1480be62745a4629d9eb1322aebab8a791e344b3b9c1adcf5"
+  time_difference: 600 # Time difference threshold (in seconds) to push a newer price feed.
+  price_deviation: 0.5 # The price deviation (%) threshold to push a newer price feed.
+  confidence_ratio: 1 # The confidence/price (%) threshold to push a newer price feed. This triggers on low confidence rather than high.
+- alias: AVAX/USD
+  id: "0x93da3352f9f1d105fdfe4971cfa80e9dd777bfc5d0f683ebb6e1294b92137bb7"
+  time_difference: 600
+  price_deviation: 0.5
   confidence_ratio: 1
 - alias: BNB/USD
   id: "0x2f95862b045670cd22bee3114c39763a4a08beeb663b145d283c31d7d1101c4f"
-  time_difference: 30
-  price_deviation: 1
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: BTC/USD
+  id: "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: CBBTC/USD
+  id: "0x2817d7bfe5c64b8ea956e9a26f573ef64e72e4d7891f2d6af9bcc93f7aff9a97"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: DAI/USD
+  id: "0xb0948a5e5313200c632b51bb5ca32f6de0d36e9950a942d19751e833f70dabfd"
+  time_difference: 600
+  price_deviation: 0.5
   confidence_ratio: 1
 - alias: ETH/USD
   id: "0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace"
-  time_difference: 30
-  price_deviation: 1
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: ETH/BTC
+  id: "0xc96458d393fe9deb7a7d63a0ac41e2898a67a7750dbd166673279e06c868df0a"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: PEPE/USD
+  id: "0xd69731a2e74ac1ce884fc3890f7ee324b6deb66147055249568869ed700882e4"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: POL/USD
+  id: "0xffd11c5a1cfd42f80afb2df4d9f264c15f956d68153335374ec10722edd70472"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: SHIB/USD
+  id: "0xf0d57deca57b3da2fe63a493f4c25925fdfd8edf834b20f93e1f84dbd1504d4a"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: SOL/USD
+  id: "0xef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d"
+  time_difference: 600
+  price_deviation: 0.5
+  confidence_ratio: 1
+- alias: SOL/ETH
+  id: "0xde87506dabfadbef89af2d5d796ebae80ddaea240fc7667aa808fce3629cd8fb"
+  time_difference: 600
+  price_deviation: 0.5
   confidence_ratio: 1
 - alias: USDC/USD
   id: "0xeaa020c61cc479712813461ce153894a96a6c00b21ed0cfc2798d1f9a9e9c94a"
-  time_difference: 30
-  price_deviation: 1
-  confidence_ratio: 1
-  early_update:
-    time_difference: 30
-    price_deviation: 0.5
-    confidence_ratio: 0.1
-- alias: ZETA/USD
-  id: "0xb70656181007f487e392bf0d92e55358e9f0da5da6531c7c4ce7828aa11277fe"
-  time_difference: 30
-  price_deviation: 1
+  time_difference: 600
+  price_deviation: 0.5
   confidence_ratio: 1
 - alias: USDT/USD
   id: "0x2b89b9dc8fdf9f34709a5b106b472f0f39bb6ca9ce04b0fd7f2e971688e2e53b"
-  time_difference: 30
-  price_deviation: 1
+  time_difference: 600
+  price_deviation: 0.5
   confidence_ratio: 1
-  early_update:
-    time_difference: 30
-    price_deviation: 0.5
-    confidence_ratio: 0.1
-- alias: POL/USD
-  id: "0xffd11c5a1cfd42f80afb2df4d9f264c15f956d68153335374ec10722edd70472"
-  time_difference: 30
-  price_deviation: 1
+- alias: ZETA/USD
+  id: "0xb70656181007f487e392bf0d92e55358e9f0da5da6531c7c4ce7828aa11277fe"
+  time_difference: 600
+  price_deviation: 0.5
   confidence_ratio: 1
