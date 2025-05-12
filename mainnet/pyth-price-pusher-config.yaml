@@ -26,7 +26,7 @@
   price_deviation: 0.4
   confidence_ratio: 1
   early_update:
-    price_deviation: 0.5
+    price_deviation: 0.2
 - alias: CBBTC/USD
   id: "0x2817d7bfe5c64b8ea956e9a26f573ef64e72e4d7891f2d6af9bcc93f7aff9a97"
   time_difference: 600
