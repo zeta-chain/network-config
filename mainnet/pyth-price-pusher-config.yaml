@@ -33,7 +33,7 @@
   price_deviation: 0.4
   confidence_ratio: 1
   early_update:
-    price_deviation: 0.5
+    price_deviation: 0.2
 - alias: DAI/USD
   id: "0xb0948a5e5313200c632b51bb5ca32f6de0d36e9950a942d19751e833f70dabfd"
   time_difference: 600
