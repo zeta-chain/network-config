@@ -2,7 +2,7 @@
 
 This repository is the authoritative source for Zetachain node setup, offering essential configuration files, genesis files, and upgrade paths for all networks. It ensures consistent and reliable node deployment and maintenance.
 
-Please be sure to use the https://docs.zetachain.com docs on how to start a node.
+Please be sure to use the [Zetachain Docs](https://docs.zetachain.com) on how to start a node.
 
 ## Releases
 
@@ -14,18 +14,18 @@ This repository uses versioned releases to distribute network configuration file
 
 ### Using Released Configurations
 
-1. Download the appropriate configuration package from the [Releases](../../releases) page
+1. Download the appropriate configuration package from the [Releases](https://github.com/zeta-chain/network-config/releases) page
 2. Extract the configuration files:
 
    ```bash
    # For Athens3 testnet
-   tar -xzf athens3-v1.0.0.tar.gz
+   tar -xzf athens3-${VERSION}.tar.gz
 
    # For Devnet
-   tar -xzf devnet-v1.0.0.tar.gz
+   tar -xzf devnet-${VERSION}.tar.gz
 
    # For Mainnet
-   tar -xzf mainnet-v1.0.0.tar.gz
+   tar -xzf mainnet-${VERSION}.tar.gz
    ```
 
 3. Verify the integrity (optional):
