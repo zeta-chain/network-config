@@ -1,8 +1,11 @@
 minimum-gas-prices = "10000000000azeta"
+
+query-gas-limit = "0"
+
 pruning = "default"
 pruning-keep-recent = "0"
-pruning-keep-every = "0"
 pruning-interval = "0"
+
 halt-height = 0
 halt-time = 0
 min-retain-blocks = 0
@@ -20,6 +23,9 @@ enable-hostname-label = true
 enable-service-label = false
 prometheus-retention-time = 10
 global-labels = [ ]
+metrics-sink = ""
+statsd-addr = ""
+datadog-hostname = ""
 
 [api]
 enable = true
@@ -31,26 +37,35 @@ rpc-write-timeout = 0
 rpc-max-body-bytes = 1000000
 enabled-unsafe-cors = false
 
-[rosetta]
-enable = false
-address = ":8080"
-blockchain = "app"
-network = "network"
-retries = 3
-offline = false
-
 [grpc]
 enable = true
 address = "0.0.0.0:9090"
+max-recv-msg-size = "10485760"
+max-send-msg-size = "2147483647"
 
 [grpc-web]
+# NOTE: gRPC must also be enabled, otherwise, this configuration is a no-op.
+# NOTE: gRPC-Web uses the same address as the API server.
 enable = true
-address = "127.0.0.1:9091"
-enable-unsafe-cors = false
 
 [state-sync]
 snapshot-interval = 0
 snapshot-keep-recent = 2
+
+[streaming]
+[streaming.abci]
+keys = []
+plugin = ""
+stop-node-on-err = true
+
+[mempool]
+# Setting max-txs to 0 will allow for a unbounded amount of transactions in the mempool.
+# Setting max_txs to negative 1 (-1) will disable transactions from being inserted into the mempool (no-op mempool).
+# Setting max_txs to a positive number (> 0) will limit the number of transactions in the mempool, by the specified amount.
+#
+# Note, this configuration only applies to SDK built-in app-side mempool
+# implementations.
+max-txs = 3000
 
 [evm]
 tracer = ""
@@ -73,6 +88,9 @@ http-idle-timeout = "2m0s"
 allow-unprotected-txs = false
 max-open-connections = 0
 enable-indexer = false
+metrics-address = "127.0.0.1:6065"
+fix-revert-gas-refund-height = 0
 
 [tls]
 certificate-path = ""
+key-path = ""

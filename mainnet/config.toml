@@ -1,18 +1,23 @@
+# The version of the CometBFT binary that created or
+# last modified the config file. Do not modify this.
+version = "0.38.17"
+
 proxy_app = "tcp://127.0.0.1:26658"
 
 # IMPORTANT! Replace the placeholder below with your actual moniker
 moniker = "{MONIKER}"
 
-fast_sync = true
 db_backend = "pebbledb"
 db_dir = "data"
 log_level = "info"
 log_format = "plain"
+
 genesis_file = "config/genesis.json"
 priv_validator_key_file = "config/priv_validator_key.json"
 priv_validator_state_file = "data/priv_validator_state.json"
 priv_validator_laddr = ""
 node_key_file = "config/node_key.json"
+
 abci = "socket"
 filter_peers = false
 
@@ -25,6 +30,7 @@ grpc_laddr = ""
 grpc_max_open_connections = 900
 unsafe = false
 max_open_connections = 900
+max_request_batch_size = 10
 max_subscription_clients = 100
 max_subscriptions_per_client = 5
 experimental_subscription_buffer_size = 200
@@ -42,9 +48,9 @@ laddr = "tcp://0.0.0.0:26656"
 
 # IMPORTANT! Replace the placeholder below with your actual external IP address
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
+
 seeds = "4e668be2d80d3475d2350e313bc75b8f0646884f@zetachain-mainnet-seed.itrocket.net:39656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@seeds.polkachu.com:22556,20e1000e88125698264454a884812746c2eb4807@seeds.lavenderfive.com:22556"
 persistent_peers = ""
-upnp = false
 addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 max_num_inbound_peers = 120
@@ -63,8 +69,20 @@ handshake_timeout = "20s"
 dial_timeout = "3s"
 
 [mempool]
-version = "v0"
+#  Possible types:
+#  - "flood" : concurrent linked list mempool with flooding gossip protocol
+#  (default)
+#  - "nop"   : nop-mempool (short for no operation; the ABCI app is responsible
+#  for storing, disseminating and proposing txs). "create_empty_blocks=false" is
+#  not supported.
+type = "flood"
+# Recheck (default: true) defines whether CometBFT should recheck the
+# validity for all remaining transaction in the mempool after a block.
+# Since a block affects the application state, some transactions in the
+# mempool may become invalid. If this does not apply to your application,
+# you can disable rechecking.
 recheck = true
+recheck_timeout = "1s"
 broadcast = true
 wal_dir = ""
 
@@ -74,8 +92,21 @@ cache_size = 10000
 keep-invalid-txs-in-cache = false
 max_tx_bytes = 1048576
 max_batch_bytes = 0
-ttl-duration = "0s"
-ttl-num-blocks = 0
+
+# Experimental parameters to limit gossiping txs to up to the specified number of peers.
+# We use two independent upper values for persistent and non-persistent peers.
+# Unconditional peers are not affected by this feature.
+# If we are connected to more than the specified number of persistent peers, only send txs to
+# ExperimentalMaxGossipConnectionsToPersistentPeers of them. If one of those
+# persistent peers disconnects, activate another persistent peer.
+# Similarly for non-persistent peers, with an upper limit of
+# ExperimentalMaxGossipConnectionsToNonPersistentPeers.
+# If set to 0, the feature is disabled for the corresponding group of peers, that is, the
+# number of active connections to that group of peers is not bounded.
+# For non-persistent peers, if enabled, a value of 10 is recommended based on experimental
+# performance results using the default P2P configuration.
+experimental_max_gossip_connections_to_persistent_peers = 0
+experimental_max_gossip_connections_to_non_persistent_peers = 0
 
 [statesync]
 enable = "false"
@@ -88,7 +119,10 @@ temp_dir = ""
 chunk_request_timeout = "10s"
 chunk_fetchers = "4"
 
-[fastsync]
+[blocksync]
+# Block Sync version to use:
+# In v0.37, v1 and v2 of the block sync protocols were deprecated.
+# Please use v0 instead.
 version = "v0"
 
 [consensus]
@@ -118,4 +152,5 @@ psql-conn = ""
 prometheus = true
 prometheus_listen_addr = ":26660"
 max_open_connections = 3
-namespace = "tendermint"
+
+namespace = "cometbft"
