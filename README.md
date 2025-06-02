@@ -9,7 +9,6 @@ Please be sure to use the [Zetachain Docs](https://docs.zetachain.com) on how to
 This repository uses versioned releases to distribute network configuration files. Each release contains configuration packages for:
 
 - **Athens3** - Testnet configuration
-- **Devnet** - Development network configuration
 - **Mainnet** - Production network configuration
 
 ### Using Released Configurations
@@ -20,9 +19,6 @@ This repository uses versioned releases to distribute network configuration file
    ```bash
    # For Athens3 testnet
    tar -xzf athens3-${VERSION}.tar.gz
-
-   # For Devnet
-   tar -xzf devnet-${VERSION}.tar.gz
 
    # For Mainnet
    tar -xzf mainnet-${VERSION}.tar.gz
