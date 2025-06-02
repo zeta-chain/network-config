@@ -4,9 +4,31 @@
 # Usage: ./scripts/create-release.sh [version]
 # Example: ./scripts/create-release.sh v1.0.0
 
-set -e
+set -euo pipefail
 
-VERSION=${1:-"v1.0.0"}
+# Check if version argument is provided
+if [ $# -eq 0 ]; then
+  echo "❌ Error: Version argument is required!"
+  echo ""
+  echo "Usage: $0 <version>"
+  echo "Example: $0 v1.0.0"
+  echo ""
+  echo "This prevents accidentally re-releasing old versions."
+  exit 1
+fi
+
+VERSION="$1"
+
+# Validate version format
+if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "❌ Error: Invalid version format!"
+  echo ""
+  echo "Version must follow the pattern: v#.#.#"
+  echo "Examples: v1.0.0, v2.1.0, v1.0.1"
+  echo "Provided: $VERSION"
+  exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 ARTIFACTS_DIR="${ROOT_DIR}/release-artifacts"
