@@ -40,13 +40,6 @@ jobs:
             config.toml app.toml genesis.json client.toml
           cd ..
 
-      - name: Create Devnet artifact
-        run: |
-          cd devnet
-          tar -czf ../artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
-            config.toml app.toml genesis.json client.toml
-          cd ..
-
       - name: Create Mainnet artifact
         run: |
           cd mainnet
@@ -59,6 +52,7 @@ jobs:
           cd artifacts
           sha256sum ./*.tar.gz > checksums.txt
           cd ..
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -69,12 +63,10 @@ jobs:
 
             This release contains network configuration files for:
             - Athens3 Testnet
-            - Devnet
             - Mainnet
 
             ### Artifacts
             - `athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz` - Athens3 testnet configuration
-            - `devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz` - Devnet configuration
             - `mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz` - Mainnet configuration
             - `checksums.txt` - SHA256 checksums for verification
 
@@ -83,8 +75,6 @@ jobs:
             # Extract configuration for desired network
             tar -xzf athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
             # or
-            tar -xzf devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-            # or
             tar -xzf mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
 
             # Verify integrity (optional)
@@ -92,7 +82,6 @@ jobs:
             ```
           files: |
             artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-            artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
             artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
             artifacts/checksums.txt
           fail_on_unmatched_files: true

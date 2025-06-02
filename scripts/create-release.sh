@@ -47,7 +47,7 @@ fi
 shopt -u nullglob
 
 # Environment directories to include
-ENVIRONMENTS=("athens3" "devnet" "mainnet")
+ENVIRONMENTS=("athens3" "mainnet")
 # Specific files to include in each environment
 CONFIG_FILES=("config.toml" "app.toml" "genesis.json" "client.toml")
 
