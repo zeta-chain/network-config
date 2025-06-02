@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g., v1.0.0-test)"
+        required: true
+        default: "v1.0.0-test"
 
 jobs:
   create-release:
@@ -17,7 +23,12 @@ jobs:
 
       - name: Get tag name
         id: tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create artifacts directory
         run: mkdir -p artifacts
@@ -52,7 +63,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.tag.outputs.TAG_NAME }}
-          name: Network Config ${{ steps.tag.outputs.TAG_NAME }}
+          name: ${{ steps.tag.outputs.TAG_NAME }}
           body: |
             ## Network Configuration Release ${{ steps.tag.outputs.TAG_NAME }}
 
