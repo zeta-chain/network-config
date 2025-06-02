@@ -1,0 +1,25 @@
+# Release artifacts
+release-artifacts/
+*.tar.gz
+checksums*.txt
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data directories (often contain large blockchain data)
+*/data/
