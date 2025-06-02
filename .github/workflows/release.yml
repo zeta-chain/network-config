@@ -6,7 +6,33 @@ on:
       - "v*.*.*"
 
 jobs:
+  create-artifacts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [athens3, devnet, mainnet]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get tag name
+        id: tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+
+      - name: Create ${{ matrix.env }} artifact
+        run: |
+          cd ${{ matrix.env }}
+          tar -czf ../artifacts-${{ matrix.env }}-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
+            config.toml app.toml genesis.json client.toml
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.env }}-${{ steps.tag.outputs.TAG_NAME }}
+          path: artifacts-${{ matrix.env }}-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+
   create-release:
+    needs: create-artifacts
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -17,36 +43,24 @@ jobs:
 
       - name: Get tag name
         id: tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
 
-      - name: Create artifacts directory
-        run: mkdir -p artifacts
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
-      - name: Create Athens3 artifact
+      - name: Prepare release assets
         run: |
-          cd athens3
-          tar -czf ../artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
-            config.toml app.toml genesis.json client.toml
-          cd ..
-
-      - name: Create Devnet artifact
-        run: |
-          cd devnet
-          tar -czf ../artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
-            config.toml app.toml genesis.json client.toml
-          cd ..
-
-      - name: Create Mainnet artifact
-        run: |
-          cd mainnet
-          tar -czf ../artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
-            config.toml app.toml genesis.json client.toml
-          cd ..
+          mkdir -p release-assets
+          mv artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}/artifacts-athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz release-assets/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+          mv artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}/artifacts-devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz release-assets/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+          mv artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}/artifacts-mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz release-assets/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
 
       - name: Generate checksums
         run: |
-          cd artifacts
-          sha256sum *.tar.gz > checksums.txt
+          cd release-assets
+          sha256sum ./*.tar.gz > checksums.txt
           cd ..
 
       - name: Create Release
@@ -86,42 +100,12 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload Athens3 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          asset_name: athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          asset_content_type: application/gzip
-
-      - name: Upload Devnet artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          asset_name: devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          asset_content_type: application/gzip
-
-      - name: Upload Mainnet artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          asset_name: mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          asset_content_type: application/gzip
-
-      - name: Upload checksums
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/checksums.txt
-          asset_name: checksums.txt
-          asset_content_type: text/plain
+      - name: Upload release assets
+        run: |
+          for file in release-assets/*; do
+            filename=$(basename "$file")
+            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                 -H "Content-Type: application/octet-stream" \
+                 --data-binary @"$file" \
+                 "${{ steps.create_release.outputs.upload_url }}?name=$filename"
+          done
