@@ -20,6 +20,3 @@ checksums*.txt
 .idea/
 *.swp
 *.swo
-
-# Data directories (often contain large blockchain data)
-*/data/
