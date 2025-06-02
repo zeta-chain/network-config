@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Network Configuration Release Script
 # Usage: ./scripts/create-release.sh [version]
@@ -8,12 +8,12 @@ set -euo pipefail
 
 # Check if version argument is provided
 if [ $# -eq 0 ]; then
-  echo "❌ Error: Version argument is required!"
-  echo ""
-  echo "Usage: $0 <version>"
-  echo "Example: $0 v1.0.0"
-  echo ""
-  echo "This prevents accidentally re-releasing old versions."
+  echo "❌ Error: Version argument is required!" >&2
+  echo "" >&2
+  echo "Usage: $0 <version>" >&2
+  echo "Example: $0 v1.0.0" >&2
+  echo "" >&2
+  echo "This prevents accidentally re-releasing old versions." >&2
   exit 1
 fi
 
@@ -21,11 +21,11 @@ VERSION="$1"
 
 # Validate version format
 if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  echo "❌ Error: Invalid version format!"
-  echo ""
-  echo "Version must follow the pattern: v#.#.#"
-  echo "Examples: v1.0.0, v2.1.0, v1.0.1"
-  echo "Provided: $VERSION"
+  echo "❌ Error: Invalid version format!" >&2
+  echo "" >&2
+  echo "Version must follow the pattern: v#.#.#" >&2
+  echo "Examples: v1.0.0, v2.1.0, v1.0.1" >&2
+  echo "Provided: $VERSION" >&2
   exit 1
 fi
 
@@ -38,56 +38,70 @@ echo "Creating release artifacts for version: ${VERSION}"
 # Create artifacts directory
 mkdir -p "${ARTIFACTS_DIR}"
 
-# Clean previous artifacts for this version
-rm -f "${ARTIFACTS_DIR}"/*"${VERSION}"*
+# Clean previous artifacts for this version (with safeguard and nullglob)
+shopt -s nullglob
+old_artifacts=("${ARTIFACTS_DIR:?}/"*"${VERSION}"*)
+if [ ${#old_artifacts[@]} -gt 0 ]; then
+  rm -f "${old_artifacts[@]}"
+fi
+shopt -u nullglob
 
 # Environment directories to include
 ENVIRONMENTS=("athens3" "devnet" "mainnet")
 # Specific files to include in each environment
 CONFIG_FILES=("config.toml" "app.toml" "genesis.json" "client.toml")
 
-cd "${ROOT_DIR}"
-
 # Create artifacts for each environment
 for env in "${ENVIRONMENTS[@]}"; do
   if [ -d "${env}" ]; then
     echo "Creating artifact for ${env}..."
 
-    cd "${env}"
-
     # Check which files exist and include only those
     FILES_TO_INCLUDE=()
     for file in "${CONFIG_FILES[@]}"; do
-      if [ -f "${file}" ]; then
+      if [ -f "${env}/${file}" ]; then
         FILES_TO_INCLUDE+=("${file}")
         echo "  ✓ Including ${file}"
       else
-        echo "  ⚠️  ${file} not found, skipping..."
+        echo "  ⚠️  ${file} not found, skipping..." >&2
       fi
     done
 
     if [ ${#FILES_TO_INCLUDE[@]} -gt 0 ]; then
-      tar -czf "${ARTIFACTS_DIR}/${env}-${VERSION}.tar.gz" "${FILES_TO_INCLUDE[@]}"
+      tar -C "${env}" -czf "${ARTIFACTS_DIR}/${env}-${VERSION}.tar.gz" "${FILES_TO_INCLUDE[@]}"
       echo "✓ Created ${env}-${VERSION}.tar.gz with ${#FILES_TO_INCLUDE[@]} files"
     else
-      echo "❌ No config files found in ${env}, skipping artifact creation..."
+      echo "❌ No config files found in ${env}, skipping artifact creation..." >&2
     fi
-
-    cd "${ROOT_DIR}"
   else
-    echo "⚠️  Warning: ${env} directory not found, skipping..."
+    echo "⚠️  Warning: ${env} directory not found, skipping..." >&2
   fi
 done
 
-# Generate checksums
+# Generate checksums using nullglob for better error handling
 echo "Generating checksums..."
 cd "${ARTIFACTS_DIR}"
-if ls *"${VERSION}".tar.gz 1>/dev/null 2>&1; then
-  sha256sum *"${VERSION}".tar.gz >"checksums-${VERSION}.txt"
+
+# Enable nullglob to handle empty globs gracefully
+shopt -s nullglob
+files=(*"${VERSION}".tar.gz)
+shopt -u nullglob
+
+if ((${#files[@]})); then
+  # Use portable checksum utility
+  if command -v sha256sum &>/dev/null; then
+    sha256sum "${files[@]}" >"checksums-${VERSION}.txt"
+  elif command -v shasum &>/dev/null; then
+    shasum -a 256 "${files[@]}" >"checksums-${VERSION}.txt"
+  else
+    echo "❌ Error: No suitable checksum utility found (sha256sum or shasum)" >&2
+    exit 1
+  fi
 else
-  echo "❌ No artifacts created, skipping checksum generation"
+  echo "❌ No artifacts created, skipping checksum generation" >&2
   exit 1
 fi
+
 cd "${ROOT_DIR}"
 
 echo ""
