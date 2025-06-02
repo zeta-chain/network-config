@@ -6,33 +6,7 @@ on:
       - "v*.*.*"
 
 jobs:
-  create-artifacts:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        env: [athens3, devnet, mainnet]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Get tag name
-        id: tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
-
-      - name: Create ${{ matrix.env }} artifact
-        run: |
-          cd ${{ matrix.env }}
-          tar -czf ../artifacts-${{ matrix.env }}-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
-            config.toml app.toml genesis.json client.toml
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.env }}-${{ steps.tag.outputs.TAG_NAME }}
-          path: artifacts-${{ matrix.env }}-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-
   create-release:
-    needs: create-artifacts
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -43,34 +17,42 @@ jobs:
 
       - name: Get tag name
         id: tag
-        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts
+      - name: Create artifacts directory
+        run: mkdir -p artifacts
 
-      - name: Prepare release assets
+      - name: Create Athens3 artifact
         run: |
-          mkdir -p release-assets
-          mv artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}/artifacts-athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz release-assets/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          mv artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}/artifacts-devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz release-assets/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
-          mv artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}/artifacts-mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz release-assets/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+          cd athens3
+          tar -czf ../artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
+            config.toml app.toml genesis.json client.toml
+          cd ..
+
+      - name: Create Devnet artifact
+        run: |
+          cd devnet
+          tar -czf ../artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
+            config.toml app.toml genesis.json client.toml
+          cd ..
+
+      - name: Create Mainnet artifact
+        run: |
+          cd mainnet
+          tar -czf ../artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz \
+            config.toml app.toml genesis.json client.toml
+          cd ..
 
       - name: Generate checksums
         run: |
-          cd release-assets
+          cd artifacts
           sha256sum ./*.tar.gz > checksums.txt
           cd ..
-
       - name: Create Release
-        uses: actions/create-release@v1
-        id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.tag.outputs.TAG_NAME }}
-          release_name: Network Config ${{ steps.tag.outputs.TAG_NAME }}
+          name: Network Config ${{ steps.tag.outputs.TAG_NAME }}
           body: |
             ## Network Configuration Release ${{ steps.tag.outputs.TAG_NAME }}
 
@@ -97,15 +79,13 @@ jobs:
             # Verify integrity (optional)
             sha256sum -c checksums.txt
             ```
+          files: |
+            artifacts/athens3-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+            artifacts/devnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+            artifacts/mainnet-${{ steps.tag.outputs.TAG_NAME }}.tar.gz
+            artifacts/checksums.txt
+          fail_on_unmatched_files: true
           draft: false
           prerelease: false
-
-      - name: Upload release assets
-        run: |
-          for file in release-assets/*; do
-            filename=$(basename "$file")
-            curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                 -H "Content-Type: application/octet-stream" \
-                 --data-binary @"$file" \
-                 "${{ steps.create_release.outputs.upload_url }}?name=$filename"
-          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
