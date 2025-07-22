@@ -58,6 +58,22 @@
                 "name": "base_mainnet"
             },
             "Endpoint": "BASE_MAINNET_RPC_ENDPOINT"
+        },
+                "42161": {
+            "Chain": {
+                "chain_id": 42161,
+                "name": "arbitrum_mainnet"
+
+            },
+            "Endpoint": "ARBITRUM_MAINNET_RPC_ENDPOINT"
+        },
+        "43114": {
+            "Chain": {
+                "chain_id": 43114,
+                "name": "avalanche_mainnet"
+
+            },
+            "Endpoint": "AVALANCHE_MAINNET_RPC_ENDPOINT"
         }
     },
     "BTCChainConfigs": {
@@ -69,6 +85,15 @@
             "RPCHost": "BTC_MAINNET_RPC_HOST",
             "RPCParams": "mainnet"
         }
+    },
+    "SolanaConfig": {
+        "Endpoint": "SOLANA_MAINNET_RPC_ENDPOINT"
+    },
+    "TONConfig": {
+        "Endpoint": "TON_MAINNET_HTTP_API_ENDPOINT"
+    },
+    "SuiConfig": {
+        "Endpoint": "SUI_MAINNET_RPC_ENDPOINT"
     },
     "ComplianceConfig": {
         "LogPath": "/var/log/zetaclient"
