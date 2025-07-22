@@ -77,6 +77,22 @@
 
             },
             "Endpoint": "BASE_SEPOLIA_TESTNET_RPC_ENDPOINT"
+        },
+        "421614": {
+            "Chain": {
+                "chain_id": 421614,
+                "name": "arbitrum_sepolia"
+
+            },
+            "Endpoint": "ARBITRUM_SEPOLIA_TESTNET_RPC_ENDPOINT"
+        },
+        "43113": {
+            "Chain": {
+                "chain_id": 43113,
+                "name": "avalanche_testnet"
+
+            },
+            "Endpoint": "AVALANCHE_TESTNET_RPC_ENDPOINT"
         }
     },
     "BTCChainConfigs": {
@@ -99,6 +115,12 @@
     },
     "SolanaConfig": {
         "Endpoint": "SOLANA_DEVNET_RPC_ENDPOINT"
+    },
+    "TONConfig": {
+        "Endpoint": "TON_TESTNET_HTTP_API_ENDPOINT"
+    },
+    "SuiConfig": {
+        "Endpoint": "SUI_TESTNET_RPC_ENDPOINT"
     },
     "ComplianceConfig": {
         "LogPath": "/var/log/zetaclient"
