@@ -68,6 +68,7 @@ stop-node-on-err = true
 max-txs = 3000
 
 [evm]
+evm-chain-id = 7001
 tracer = ""
 max-tx-gas-wanted = 0
 
