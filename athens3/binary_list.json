@@ -103,6 +103,62 @@
     {
       "download_url": "https://github.com/zeta-chain/node/releases/download/v20.0.2/zetacored-linux-amd64",
       "binary_location": "cosmovisor/upgrades/v20/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v21.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v21/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v22.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v22/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v23.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v23/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v24.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v24/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v25.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v25/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v26.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v26/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v27.0.1/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v27/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v28.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v28/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v29.0.1/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v29/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v30.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v30/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v31.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v31/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v32.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v32/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v33.0.0/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v33/bin/zetacored"
+    },
+    {
+      "download_url": "https://github.com/zeta-chain/node/releases/download/v34.1.1/zetacored-linux-amd64",
+      "binary_location": "cosmovisor/upgrades/v34/bin/zetacored"
     }
   ]
 }
