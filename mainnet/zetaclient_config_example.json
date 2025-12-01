@@ -22,6 +22,12 @@
     "HsmHotKey": "hsm-hotkey",
     "Keygen": {},
     "ChainsEnabled": [],
+    "FeatureFlags": {
+        "EnableMultipleCalls": true,
+        "EnableSolanaAddressLookupTable": true
+    },
+    "MaxBaseFee": 100,
+    "MempoolCongestionThreshold": 6000,
     "EVMChainConfigs": {
         "1": {
             "ballot_threshold": "0",
