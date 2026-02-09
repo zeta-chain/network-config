@@ -49,7 +49,7 @@ laddr = "tcp://0.0.0.0:26656"
 # IMPORTANT! Replace the placeholder below with your actual external IP address
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
 
-seeds = "ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22556"
+seeds = "f445f264cd13470378c3d165e8edb8273836bd6a@zetachain-testnet-seed.itrocket.net:15656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22556"
 persistent_peers = ""
 addr_book_file = "config/addrbook.json"
 addr_book_strict = true
