@@ -50,7 +50,7 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = "{YOUR_EXTERNAL_IP_ADDRESS_HERE}:26656"
 
 seeds = "f445f264cd13470378c3d165e8edb8273836bd6a@zetachain-testnet-seed.itrocket.net:15656,ade4d8bc8cbe014af6ebdf3cb7b1e9ad36f412c0@testnet-seeds.polkachu.com:22556"
-persistent_peers = ""
+persistent_peers = "d21b103628b0d5d824bbe81b809d8dc457bd2059@zetachain-testnet-peer.itrocket.net:16656,4d2a5330c949d1750f5296c7967d2e79c841b3ba@185.17.173.102:31011,a918d08544b5f4e0a9eb20bf91f343eb71b6d5ee@164.90.181.99:26656,e72dff87c241771f329beb8b31ed3f45d2fbda09@65.108.202.244:22556,6b372a420dead6d23bd0dff194c9456cddbbfca0@23.88.75.148:31460,fdc0a43704510897ad55a611e3f0d6f2c888c40e@95.217.200.98:22556"
 addr_book_file = "config/addrbook.json"
 addr_book_strict = true
 max_num_inbound_peers = 40
