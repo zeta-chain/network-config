@@ -1,0 +1,15 @@
+{
+  "snapshots": [
+    {
+      "networkVersion": "v36",
+      "height": "18384852",
+      "creationDate": "2026-08-27T08:09:00Z",
+      "filename": "zetachain_18384852.tar.lz4",
+      "size": 32071371040,
+      "link": "https://snapshots.polkachu.com/snapshots/zetachain/zetachain_18384852.tar.lz4",
+      "checksums": {
+        "md5": "e4b8039efd528dff9b2e945a0689ac1b"
+      }
+    }
+  ]
+}
